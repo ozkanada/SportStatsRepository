@@ -14,7 +14,16 @@ public class CountrySummaryBean {
 	public CountrySummaryBean() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public List<Country> getCountries() {
+		return countries;
+	}
+
+	public void setCountries(List<Country> countries) {
+		this.countries = countries;
 	} 
+	
 	
 	
 }
