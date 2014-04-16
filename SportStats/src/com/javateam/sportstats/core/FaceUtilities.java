@@ -3,7 +3,6 @@ package com.javateam.sportstats.core;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-
 public class FaceUtilities {
 	public static HttpServletRequest getRequest(){
 		return (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
