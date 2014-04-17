@@ -2,6 +2,7 @@ package com.javateam.sportstats.core;
  
 import org.hibernate.Session;
 import org.hibernate.Transaction; 
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,16 +27,18 @@ public class BaseRepository<E> {
 		txn.commit();
 	}
 	
-	public void remove(Object key){
+	public void remove(Long key){
 		Transaction txn=session.beginTransaction();
 		session.delete(find(key));
 		txn.commit();		
 	}
 	
-	public E find(Object key){
+	@SuppressWarnings("unchecked")
+	public E find(Long key){
 		return (E) session.load(entityClass, (Serializable) key);				
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<E> List(){
 		String name=entityClass.getSimpleName();
 		String alias=entityClass.getSimpleName().toLowerCase();

@@ -2,11 +2,9 @@ package com.javateam.sportstats.faces;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-
+import com.javateam.sportstats.core.FaceUtilities;
 import com.javateam.sportstats.entity.SportType;
 import com.javateam.sportstats.repository.SportTypeRepository;
 
@@ -19,8 +17,17 @@ public class SportTypeSummaryBean {
 		sportTypes=new ArrayList<SportType>();
 		SportTypeRepository repository=new SportTypeRepository();
 		sportTypes=repository.List();
-		repository.close();
-		
+		repository.close();		
+	}
+	
+	public String remove(){
+		if(FaceUtilities.getRequestId("sportTypeId")!=-1L){
+			SportTypeRepository repository=new SportTypeRepository();		
+			repository.remove(FaceUtilities.getRequestId("sportTypeId"));
+			sportTypes=repository.List();
+			repository.close();  
+		}				
+		return "SportTypeSummaryPage";
 	}
 
 	public List<SportType> getSportTypes() {
@@ -32,7 +39,7 @@ public class SportTypeSummaryBean {
 	}
 	
 	public String yeni(){
-		return "admin/SportTypeDetailPage.xhtml";
+		return "SportTypeDetailPage";
 	}
 	
 }
